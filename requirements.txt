@@ -1,0 +1,5 @@
+# Everything, including tests. start-tomits.bat installs requirements-core.txt
+# first and asks before the larger requirements-voice.txt.
+-r requirements-core.txt
+-r requirements-voice.txt
+pytest>=7

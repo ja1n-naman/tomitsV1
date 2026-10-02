@@ -1,0 +1,33 @@
+# ---- personal data: never commit ----
+# your database, its backups and settings
+data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.bak-v*
+settings.json
+# exports (they contain all your data)
+tomits-export-*.json
+# voice: transcript log, saved audio, downloaded speech / language models
+voice_log.db
+voice_audio/
+whisper-models/
+voice-model/
+tests/audio/*.wav
+_to_delete/
+
+# ---- environment and caches ----
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.claude/
+
+# ---- personal notes: kept on this PC only ----
+ideation.docx
+~$*
+changes.md
+test.md
+tests/audio/

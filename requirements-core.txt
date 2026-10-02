@@ -1,0 +1,6 @@
+# What tomits needs to run (web app and terminal). About 10 MB to download.
+sqlalchemy>=2.0
+rich>=13
+plyer>=2.1
+schedule>=1.2
+flask>=3.0

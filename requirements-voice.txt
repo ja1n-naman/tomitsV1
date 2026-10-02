@@ -1,0 +1,6 @@
+# Optional: local speech recognition and spoken replies. About 130 MB to download.
+# The speech model itself is downloaded separately by voice_setup.bat (it asks first).
+faster-whisper>=1.0
+numpy>=1.24
+sounddevice>=0.4
+pyttsx3>=2.90

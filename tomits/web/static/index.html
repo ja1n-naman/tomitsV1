@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tomits</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/static/css/base.css">
+<link rel="stylesheet" id="layout-css" href="/static/layouts/l1.css">
+<script src="/static/js/boot-theme.js"></script>
+</head>
+<body data-layout="1" data-screen="today">
+<a class="skip-link" href="#layout-root">Skip to content</a>
+
+<header class="appbar" id="appbar">
+  <span class="appbar-brand"><span class="brand-mark" aria-hidden="true"></span>tomits</span>
+  <button type="button" class="ab-btn" data-act="open_layouts" title="Switch layout (L)" aria-label="Switch layout">
+    <i data-icon="layers"></i><span class="ab-label">Layout</span><kbd>L</kbd>
+  </button>
+  <form class="quickadd" id="quickadd" data-form="say" autocomplete="off" role="search" aria-label="Type or say a command">
+    <label for="qa-input" class="sr">Type or say a command</label>
+    <input id="qa-input" name="text" data-keep placeholder="Type a command, or press V and speak" maxlength="500">
+    <button type="button" class="mic-btn" id="mic-btn" data-act="mic_toggle" aria-pressed="false" title="Hold V to talk, or click">
+      <i data-icon="mic"></i><span class="lvl" data-level aria-hidden="true"><span></span><span></span><span></span></span><span class="sr" id="mic-state-sr">Microphone</span>
+    </button>
+    <button type="submit" class="qa-send" title="Run (Enter)"><i data-icon="arrow-right"></i><span class="sr">Run</span></button>
+    <kbd class="qa-kbd" title="Focus this box">Ctrl K</kbd>
+  </form>
+  <button type="button" class="ab-btn" data-act="open_search" title="Search (/)" aria-label="Search"><i data-icon="search"></i><kbd>/</kbd></button>
+  <span class="saved" id="saved" role="status" aria-live="polite"><i data-icon="check"></i><span id="saved-text">Saved</span></span>
+  <button type="button" class="ab-btn" data-act="toggle_theme" id="theme-btn" aria-label="Switch theme"><i data-icon="moon" class="i-moon"></i><i data-icon="sun" class="i-sun"></i></button>
+  <button type="button" class="ab-btn" data-act="open_help" aria-label="Keyboard shortcuts and help" title="Shortcuts (?)"><i data-icon="help"></i></button>
+</header>
+
+<div id="conv" class="conv" aria-live="polite" hidden></div>
+<div id="banners" class="banners"></div>
+<main id="layout-root" class="layout-root" tabindex="-1"></main>
+<aside id="notes-panel" class="notes-panel" aria-label="Remember"></aside>
+
+<dialog id="dlg" class="dlg" aria-labelledby="dlg-title"></dialog>
+<dialog id="alarm-dlg" class="dlg alarm-dlg" aria-labelledby="alarm-title"></dialog>
+<div id="overlay" class="overlay" hidden></div>
+<div id="toasts" class="toasts" aria-live="polite"></div>
+
+<script src="/static/js/icons.js"></script>
+<script src="/static/js/api.js"></script>
+<script src="/static/js/render.js"></script>
+<script src="/static/js/forms.js"></script>
+<script src="/static/js/notes.js"></script>
+<script src="/static/js/voice.js"></script>
+<script src="/static/js/actions.js"></script>
+<script src="/static/layouts/l1.js"></script>
+<script src="/static/layouts/l2.js"></script>
+<script src="/static/layouts/l3.js"></script>
+<script src="/static/layouts/l4.js"></script>
+<script src="/static/layouts/l5.js"></script>
+<script src="/static/layouts/l6.js"></script>
+<script src="/static/js/app.js"></script>
+</body>
+</html>

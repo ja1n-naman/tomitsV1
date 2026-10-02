@@ -1,0 +1,58 @@
+/* Layout 5: Split dashboard. An instrument panel: tiled panes with shared
+   borders, small text, mono numbers. Signal orange; dark is blue-black amber. */
+:root {
+  --bg: #d9dde2; --surface: #ffffff; --surface-2: #f4f6f8; --ink: #111418; --muted: #58616b; --line: #c9cfd6; --line-2: #a9b1bb;
+  --accent: #c2410c; --accent-ink: #fff; --accent-soft: #fdeee6; --bad: #b42318; --bad-soft: #fde8e6; --ok: #157f3b;
+  --warn: #a15c00; --warn-soft: #fff1d6; --focus: #0b57d0; --radius: 0;
+  --mono: "Cascadia Mono", "Cascadia Code", Consolas, monospace; --font: "Segoe UI", system-ui, Arial, sans-serif; --display: var(--font);
+  color-scheme: light;
+}
+[data-theme="dark"] {
+  --bg: #05070a; --surface: #0e1217; --surface-2: #131820; --ink: #d9dfe6; --muted: #8893a0; --line: #222a34; --line-2: #36414e;
+  --accent: #f0a020; --accent-ink: #1c1203; --accent-soft: #2b2110; --bad: #f2786c; --bad-soft: #2d1513; --ok: #5cc98a;
+  --warn: #f0b44c; --warn-soft: #2b2110; --focus: #8ab4f8;
+  color-scheme: dark;
+}
+body { font-size: 13px; }
+.appbar { background: var(--ink); color: var(--surface); border: 0; padding: 4px 10px; }
+[data-theme="dark"] .appbar { background: #000; color: var(--ink); border-bottom: 1px solid var(--line); }
+.appbar .ab-btn, .appbar .saved { color: inherit; border-color: rgba(255,255,255,.25); }
+.appbar-brand { font: 700 13px var(--mono); background: var(--accent); color: var(--accent-ink); padding: 4px 8px; }
+.brand-mark { display: none; }
+.quickadd { background: var(--surface); }
+.btn { font: 12px var(--mono); padding: 2px 7px; }
+.mono { font-family: var(--mono); font-size: 12px; } .dim { color: var(--muted); } .bad { color: var(--bad); }
+.l5-status { display: flex; align-items: stretch; height: 28px; background: var(--surface-2); border-bottom: 1px solid var(--line); font: 12px var(--mono); }
+.l5-status a { display: flex; align-items: center; gap: 4px; padding: 0 9px; color: var(--muted); text-decoration: none; border-right: 1px solid var(--line); }
+.l5-status a[aria-current="page"] { color: var(--ink); background: var(--surface); box-shadow: inset 0 -2px 0 var(--accent); }
+.l5-status .badge { background: var(--accent); color: var(--accent-ink); padding: 0 4px; }
+.l5-status .badge:empty { display: none; }
+.st-clock { margin-left: auto; display: flex; align-items: center; padding: 0 10px; }
+.l5-grid { display: grid; grid-template-columns: 1.25fr 1fr .95fr; grid-template-rows: minmax(300px, 1fr) minmax(300px, 1fr); gap: 1px; background: var(--line); height: calc(100vh - 78px); }
+.pane { background: var(--surface); display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+.p-plan { grid-row: 1 / 3; } .p-goals { grid-column: 2; grid-row: 1; } .p-res { grid-column: 2; grid-row: 2; } .p-voice { grid-column: 3; grid-row: 1; } .p-hist { grid-column: 3; grid-row: 2; }
+.ph { display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 8px 0 10px; border-bottom: 1px solid var(--line); background: var(--surface-2); flex: none; }
+.ph h2 { font: 700 11.5px var(--mono); text-transform: uppercase; letter-spacing: .08em; margin-right: auto; display: flex; gap: 8px; align-items: center; }
+.ph .badge { background: var(--accent); color: var(--accent-ink); font-size: 10.5px; padding: 0 5px; }
+.ph-max { color: var(--muted); }
+.pb { padding: 8px 10px 14px; overflow: auto; flex: 1; display: grid; gap: 8px; align-content: start; }
+.l5-max { height: calc(100vh - 78px); display: flex; }
+.l5-max .pane { flex: 1; }
+.l5-max .pb { max-width: 1180px; font-size: 14px; }
+.t { width: 100%; border-collapse: collapse; }
+.t th { font: 10.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); text-align: left; padding: 3px 5px; border-bottom: 1px solid var(--line); font-weight: 400; }
+.t td { padding: 4px 5px; border-bottom: 1px solid var(--surface-2); vertical-align: top; }
+.plan tr.s-done td { color: var(--muted); } .plan tr.s-done b { text-decoration: line-through; }
+.plan tr.s-failed td, .plan tr.s-skipped td { background: var(--bad-soft); }
+.plan tr.is-now td { background: var(--warn-soft); }
+.plan tr.is-sel td:first-child { box-shadow: inset 3px 0 0 var(--ink); }
+.plan .actions { margin: 0; max-width: 250px; }
+.c-a { display: flex; gap: 2px; align-items: flex-start; }
+.plan td:nth-child(5) { min-width: 220px; }
+.p1 { color: var(--bad); font-weight: 700; } .p2 { color: var(--warn); }
+.selbox { border-top: 2px solid var(--line); padding-top: 8px; }
+.vmini { display: flex; gap: 10px; align-items: center; }
+.vmini .mic-big { width: 52px; height: 52px; border-radius: 0; }
+.vphase { font: 700 14px var(--mono); }
+.task, .goal, .panel, .proposal, .empty, .banner, .lock, .dlg, .ov-card, .toast, .kind, .st, .mic-btn, .quickadd { border-radius: 0; }
+.screen-title { font: 700 16px var(--mono); text-transform: uppercase; letter-spacing: .04em; }
