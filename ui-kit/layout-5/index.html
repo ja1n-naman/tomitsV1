@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- Layout 5: Split dashboard. See UI_GUIDE.md §4.5. Opens by double-click; no build step, no network. -->
+<html lang="en" data-layout="5">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Layout 5: Split dashboard · UI kit</title>
+<link rel="icon" href="data:,">
+<script src="../shared/boot.js"></script>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../base.css">
+<!-- shared components: delete a pair (css + js) and its host element to remove one -->
+<link rel="stylesheet" href="../shared/topbar.css">
+<link rel="stylesheet" href="../shared/quick-add.css">
+<link rel="stylesheet" href="../shared/saved-indicator.css">
+<link rel="stylesheet" href="../shared/toast.css">
+<link rel="stylesheet" href="../shared/banners.css">
+<link rel="stylesheet" href="../shared/shortcuts.css">
+<link rel="stylesheet" href="../shared/voice-panel.css">
+<link rel="stylesheet" href="../shared/notes-panel.css">
+<link rel="stylesheet" href="../shared/alarm.css">
+<link rel="stylesheet" href="../shared/first-run.css">
+<link rel="stylesheet" href="layout.css">
+</head>
+<body data-screen="home">
+<a class="skip-link" href="#layout-root">Skip to content</a>
+
+<!-- ===== shell: the same in every layout (UI_GUIDE.md §5.1) ===== -->
+<header class="appbar" id="appbar" data-slot="topbar">
+  <span class="appbar-brand"><span class="brand-mark" aria-hidden="true"></span><span data-app-name>App</span></span>
+  <button type="button" class="ab-btn" data-act="open_layouts" title="Switch layout (L)" aria-label="Switch layout">
+    <i data-icon="layers"></i><span class="ab-label">Layout</span><kbd>L</kbd>
+  </button>
+  <form class="quickadd" id="quickadd" data-form="say" autocomplete="off" role="search" aria-label="Type or say a command">
+    <label for="qa-input" class="sr">Type or say a command</label>
+    <input id="qa-input" name="text" data-keep placeholder="Type a command, or press V and speak" maxlength="500">
+    <button type="button" class="mic-btn" id="mic-btn" data-act="mic_toggle" aria-pressed="false" title="Hold V to talk, or click">
+      <i data-icon="mic"></i><span class="lvl" data-level aria-hidden="true"><span></span><span></span><span></span></span><span class="sr" id="mic-state-sr">Microphone</span>
+    </button>
+    <button type="submit" class="qa-send" title="Run (Enter)"><i data-icon="arrow-right"></i><span class="sr">Run</span></button>
+    <kbd class="qa-kbd" title="Focus this box">Ctrl K</kbd>
+  </form>
+  <button type="button" class="ab-btn" data-act="open_search" title="Search (/)" aria-label="Search"><i data-icon="search"></i><kbd>/</kbd></button>
+  <span class="saved" id="saved" role="status" aria-live="polite" data-state="idle"><i data-icon="check"></i><span id="saved-text">Saved</span></span>
+  <button type="button" class="ab-btn" data-act="toggle_theme" id="theme-btn" aria-label="Switch theme" title="Switch theme"><i data-icon="moon" class="i-moon"></i><i data-icon="sun" class="i-sun"></i></button>
+  <button type="button" class="ab-btn" data-act="open_help" aria-label="Keyboard shortcuts and help" title="Shortcuts (?)"><i data-icon="help"></i></button>
+</header>
+
+<div id="conv" class="conv" aria-live="polite" hidden></div>          <!-- voice-panel.js -->
+<div id="banners" class="banners" data-slot="banners"></div>        <!-- banners.js -->
+<main id="layout-root" class="layout-root" tabindex="-1"></main>    <!-- layout.js draws the frame here -->
+<aside id="notes-panel" class="notes-panel" aria-label="Notes" data-slot="notes"></aside>  <!-- notes-panel.js -->
+
+<dialog id="dlg" class="dlg" aria-labelledby="dlg-title"></dialog>                  <!-- forms, confirm.js, first-run.js -->
+<dialog id="alarm-dlg" class="dlg alarm-dlg" aria-labelledby="alarm-title"></dialog> <!-- alarm.js -->
+<div id="overlay" class="overlay" hidden></div>                                     <!-- shortcuts.js, search.js -->
+<div id="toasts" class="toasts" aria-live="polite"></div>                           <!-- toast.js -->
+
+<!-- content (placeholder) → icons → core → components → this layout -->
+<script src="../demo-content.js"></script>
+<script src="../shared/icons.js"></script>
+<script src="../shared/core.js"></script>
+<script src="../shared/screens.js"></script>
+<script src="../shared/theme-switch.js"></script>
+<script src="../shared/layout-switcher.js"></script>
+<script src="../shared/quick-add.js"></script>
+<script src="../shared/saved-indicator.js"></script>
+<script src="../shared/toast.js"></script>
+<script src="../shared/banners.js"></script>
+<script src="../shared/confirm.js"></script>
+<script src="../shared/shortcuts.js"></script>
+<script src="../shared/search.js"></script>
+<script src="../shared/voice-panel.js"></script>
+<script src="../shared/notes-panel.js"></script>
+<script src="../shared/alarm.js"></script>
+<script src="../shared/first-run.js"></script>
+<script src="layout.js"></script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+/* ==========================================================================
+   tokens.css: every design token, in one place.
+   Values are exact copies from the original stylesheets (see UI_GUIDE.md §3).
+
+   How switching works (one attribute mechanism):
+     <html data-layout="1..6" data-theme="light|dark">
+   - :root                                  shared fallback tokens (light only)
+   - :root[data-layout="N"]                 layout N, light
+   - :root[data-layout="N"][data-theme=dark] layout N, dark
+   Kit additions (not in the originals), marked "kit:":
+     --bad-ink / --now-ink  readable text on --bad / --now (fixes dark contrast)
+     --space-1 … --space-12 names for the pixel spacing the originals use
+   ========================================================================== */
+
+:root {
+  --bg: #fff;
+  --surface: #fff;
+  --surface-2: #f4f6f8;
+  --ink: #15191e;
+  --muted: #59636e;
+  --line: #dde2e7;
+  --line-2: #c3cad2;
+  --accent: #0b6e63;
+  --accent-ink: #fff;
+  --accent-soft: #e2f1ee;
+  --bad: #b3261e;
+  --bad-soft: #fbe9e7;
+  --ok: #1b7a43;
+  --warn: #8a5800;
+  --warn-soft: #fdf2d9;
+  --focus: #0b57d0;
+  --font: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --display: var(--font);
+  --mono: "Cascadia Mono", Consolas, monospace;
+  --radius: 4px;
+  --now: var(--accent); /* kit: fallback so --now always resolves */
+  --bad-ink: #fff;
+  --now-ink: #fff;
+  /* kit: spacing names for the raw pixel values the originals use */ --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 10px;
+  --space-6: 12px;
+  --space-7: 14px;
+  --space-8: 16px;
+  --space-9: 20px;
+  --space-10: 24px;
+  --space-11: 28px;
+  --space-12: 40px;
+  color-scheme: light;
+}
+
+/* ---------- Layout 1: Timeline. Calm and editorial: teal on white; deep blue-green in dark. ---------- */
+:root[data-layout="1"] {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f2f5f5;
+  --ink: #10232a;
+  --muted: #52666d;
+  --line: #dbe3e5;
+  --line-2: #b6c4c8;
+  --accent: #0b7366;
+  --accent-ink: #ffffff;
+  --accent-soft: #e2f2ef;
+  --bad: #b3261e;
+  --bad-soft: #fbe9e7;
+  --ok: #1d7a3d;
+  --warn: #8a5a00;
+  --warn-soft: #fdf3dc;
+  --focus: #0b63c4;
+  --now: #c2410c;
+  --radius: 4px;
+  --font: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --display: "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+  --bad-ink: #fff /* kit */;
+  --now-ink: #ffffff /* kit */;
+  color-scheme: light;
+}
+:root[data-layout="1"][data-theme="dark"] {
+  --bg: #0e1619;
+  --surface: #131e22;
+  --surface-2: #0b1316;
+  --ink: #e2ecee;
+  --muted: #98aaaf;
+  --line: #22333a;
+  --line-2: #3a5057;
+  --accent: #46c2b0;
+  --accent-ink: #062520;
+  --accent-soft: #143430;
+  --bad: #ff8a80;
+  --bad-soft: #3a1714;
+  --ok: #6fd28f;
+  --warn: #f0bd5e;
+  --warn-soft: #33280f;
+  --focus: #7cb8ff;
+  --now: #ff9a5c;
+  --bad-ink: #0e1619 /* kit: white on the light dark-mode --bad is only 2.3–2.7:1 */;
+  --now-ink: #2b1203 /* kit */;
+  color-scheme: dark;
+}
+
+/* ---------- Layout 2: Calendar grid. Technical and exact: DIN-style type, square corners, hairline grid, cobalt accent. ---------- */
+:root[data-layout="2"] {
+  --bg: #eef1f5;
+  --surface: #ffffff;
+  --surface-2: #f6f8fb;
+  --ink: #141922;
+  --muted: #556071;
+  --line: #dde2ea;
+  --line-2: #c3cad6;
+  --accent: #1f56d1;
+  --accent-ink: #fff;
+  --accent-soft: #e3ebff;
+  --bad: #c0262d;
+  --bad-soft: #fdeaea;
+  --ok: #18794e;
+  --warn: #9a5b00;
+  --warn-soft: #fff3d6;
+  --focus: #1f56d1;
+  --now: #e0451f;
+  --radius: 1px;
+  --fixed-bg: #253049;
+  --fixed-ink: #f3f6ff;
+  --auto-bg: #dce7ff;
+  --auto-ink: #12357f;
+  --font: Bahnschrift, "DIN Alternate", "Roboto Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+  --display: var(--font);
+  --bad-ink: #fff /* kit */;
+  --now-ink: #1a0a00 /* kit */;
+  color-scheme: light;
+}
+:root[data-layout="2"][data-theme="dark"] {
+  --bg: #0f1115;
+  --surface: #171a20;
+  --surface-2: #1d2128;
+  --ink: #e5e8ee;
+  --muted: #9ba4b3;
+  --line: #262b34;
+  --line-2: #3a414d;
+  --accent: #7aa3ff;
+  --accent-ink: #0b1a3d;
+  --accent-soft: #1b2847;
+  --bad: #ff7f7f;
+  --bad-soft: #3a1618;
+  --ok: #5fd39a;
+  --warn: #f2b84b;
+  --warn-soft: #33270f;
+  --focus: #9bbcff;
+  --now: #ff7a52;
+  --fixed-bg: #3a4766;
+  --fixed-ink: #eef2ff;
+  --auto-bg: #1c2a4c;
+  --auto-ink: #c6d6ff;
+  --bad-ink: #0f1115 /* kit: white on the light dark-mode --bad is only 2.3–2.7:1 */;
+  --now-ink: #2b1203 /* kit */;
+  color-scheme: dark;
+}
+
+/* ---------- Layout 3: Board. Workshop pin-board: sage-grey board, ink-outlined cards, condensed uppercase headings, mustard for "now". ---------- */
+:root[data-layout="3"] {
+  --bg: #d6dcd1;
+  --surface: #ffffff;
+  --surface-2: #e6eae1;
+  --ink: #171b15;
+  --muted: #4f574b;
+  --line: #b5bdae;
+  --line-2: #171b15;
+  --accent: #2c6a4a;
+  --accent-ink: #fff;
+  --accent-soft: #dff0e6;
+  --bad: #b0301d;
+  --bad-soft: #f8e1dc;
+  --ok: #2c7a33;
+  --warn: #8a5f00;
+  --warn-soft: #fbefcc;
+  --focus: #1d4ed8;
+  --mustard: #d39400;
+  --mustard-soft: #fbefcc;
+  --fixed: #3b5870;
+  --radius: 4px;
+  --display: "Franklin Gothic Medium", "Franklin Gothic", "Arial Narrow", sans-serif;
+  --font: Corbel, "Gill Sans", "Gill Sans MT", Calibri, "Segoe UI", sans-serif;
+  --bad-ink: #fff /* kit */;
+  color-scheme: light;
+}
+:root[data-layout="3"][data-theme="dark"] {
+  --bg: #141612;
+  --surface: #272b23;
+  --surface-2: #1c1f19;
+  --ink: #ebeee5;
+  --muted: #a5ad9d;
+  --line: #3a4035;
+  --line-2: #6a7362;
+  --accent: #8fd3ad;
+  --accent-ink: #10231a;
+  --accent-soft: #1b3127;
+  --bad: #ff8670;
+  --bad-soft: #3c1b15;
+  --ok: #84d18a;
+  --warn: #f1c04a;
+  --warn-soft: #3a2f10;
+  --focus: #8db4ff;
+  --mustard: #f1c04a;
+  --mustard-soft: #3a2f10;
+  --fixed: #a9c3d8;
+  --bad-ink: #141612 /* kit: white on the light dark-mode --bad is only 2.3–2.7:1 */;
+  color-scheme: dark;
+}
+
+/* ---------- Layout 4: Focus on now. Quiet and roomy: one large serif title, soft sans. Deep green on pale grey; dark is warm amber. ---------- */
+:root[data-layout="4"] {
+  --bg: #f3f5f4;
+  --surface: #fbfcfb;
+  --surface-2: #eef1ef;
+  --ink: #1a2a23;
+  --muted: #5a6962;
+  --line: #d6deda;
+  --line-2: #b9c4bf;
+  --accent: #2b6a4e;
+  --accent-ink: #fff;
+  --accent-soft: #e1eee7;
+  --bad: #a83226;
+  --bad-soft: #f6e3e0;
+  --ok: #2b6a4e;
+  --warn: #8a5800;
+  --warn-soft: #f7ecd3;
+  --focus: #1f5fbf;
+  --radius: 10px;
+  --serif: Georgia, "Sitka Display", "Iowan Old Style", "Palatino Linotype", serif;
+  --font: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --display: var(--serif);
+  --bad-ink: #fff /* kit */;
+  color-scheme: light;
+}
+:root[data-layout="4"][data-theme="dark"] {
+  --bg: #111312;
+  --surface: #161917;
+  --surface-2: #1c1f1d;
+  --ink: #ece7de;
+  --muted: #a19d94;
+  --line: #2b2e2c;
+  --line-2: #45494a;
+  --accent: #e3b266;
+  --accent-ink: #1e1607;
+  --accent-soft: #2c2416;
+  --bad: #f08a7c;
+  --bad-soft: #351b17;
+  --ok: #b9d48f;
+  --warn: #e9b65c;
+  --warn-soft: #2e2512;
+  --focus: #9fc2ff;
+  --bad-ink: #111312 /* kit: white on the light dark-mode --bad is only 2.3–2.7:1 */;
+  color-scheme: dark;
+}
+
+/* ---------- Layout 5: Split dashboard. Instrument panel: tiled panes, small text, mono numbers. Signal orange; dark is blue-black amber. ---------- */
+:root[data-layout="5"] {
+  --bg: #d9dde2;
+  --surface: #ffffff;
+  --surface-2: #f4f6f8;
+  --ink: #111418;
+  --muted: #58616b;
+  --line: #c9cfd6;
+  --line-2: #a9b1bb;
+  --accent: #c2410c;
+  --accent-ink: #fff;
+  --accent-soft: #fdeee6;
+  --bad: #b42318;
+  --bad-soft: #fde8e6;
+  --ok: #157f3b;
+  --warn: #a15c00;
+  --warn-soft: #fff1d6;
+  --focus: #0b57d0;
+  --radius: 0;
+  --mono: "Cascadia Mono", "Cascadia Code", Consolas, monospace;
+  --font: "Segoe UI", system-ui, Arial, sans-serif;
+  --display: var(--font);
+  --bad-ink: #fff /* kit */;
+  color-scheme: light;
+}
+:root[data-layout="5"][data-theme="dark"] {
+  --bg: #05070a;
+  --surface: #0e1217;
+  --surface-2: #131820;
+  --ink: #d9dfe6;
+  --muted: #8893a0;
+  --line: #222a34;
+  --line-2: #36414e;
+  --accent: #f0a020;
+  --accent-ink: #1c1203;
+  --accent-soft: #2b2110;
+  --bad: #f2786c;
+  --bad-soft: #2d1513;
+  --ok: #5cc98a;
+  --warn: #f0b44c;
+  --warn-soft: #2b2110;
+  --focus: #8ab4f8;
+  --bad-ink: #05070a /* kit: white on the light dark-mode --bad is only 2.3–2.7:1 */;
+  color-scheme: dark;
+}
+
+/* ---------- Layout 6: Voice first. A conversation: big type, bubbles, result cards, a large mic. Coral marks the mic. ---------- */
+:root[data-layout="6"] {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f4f5f7;
+  --ink: #11151b;
+  --muted: #59636f;
+  --line: #e1e4e9;
+  --line-2: #c4cad3;
+  --accent: #c8401a;
+  --accent-ink: #ffffff;
+  --accent-soft: #fdebe5;
+  --bad: #b42318;
+  --bad-soft: #fde8e6;
+  --ok: #1b7a43;
+  --warn: #995c00;
+  --warn-soft: #fff2d9;
+  --focus: #1a5fd0;
+  --me: #11151b;
+  --me-ink: #fff;
+  --radius: 10px;
+  --font: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --display: "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+  --bad-ink: #fff /* kit */;
+  color-scheme: light;
+}
+:root[data-layout="6"][data-theme="dark"] {
+  --bg: #0e1013;
+  --surface: #171a20;
+  --surface-2: #13161b;
+  --ink: #e9ecf1;
+  --muted: #9ba4b1;
+  --line: #262b33;
+  --line-2: #3b424d;
+  --accent: #ff7a57;
+  --accent-ink: #2a0d03;
+  --accent-soft: #3a1c13;
+  --bad: #ff8a7a;
+  --bad-soft: #3a1915;
+  --ok: #6fd39a;
+  --warn: #f2b955;
+  --warn-soft: #30250f;
+  --focus: #8fb6ff;
+  --me: #2c333e;
+  --me-ink: #f1f3f6;
+  --bad-ink: #0e1013 /* kit: white on the light dark-mode --bad is only 2.3–2.7:1 */;
+  color-scheme: dark;
+}

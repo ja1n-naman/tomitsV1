@@ -1,0 +1,8 @@
+/* shortcuts.css: the help overlay's key list (UI_GUIDE.md §5.5). The overlay itself is in base.css. */
+.keys { display: grid; gap: 4px; margin: 8px 0 12px; }
+.keys div { display: grid; grid-template-columns: 90px 1fr; gap: 10px; }
+.keys dd { margin: 0; }
+.search-q { width: 100%; font-size: 16px; padding: 9px 12px; margin: 6px 0 10px; }
+.search-res { display: grid; gap: 4px; }
+.sr-item { justify-content: flex-start; white-space: normal; text-align: left; }
+.sr-item small { color: var(--muted); font-weight: 400; margin-left: 6px; }

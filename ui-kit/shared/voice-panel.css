@@ -1,0 +1,32 @@
+/* voice-panel.css: conversation panel, big mic, level meter, transcript log, mic test (UI_GUIDE.md §5.10). Optional. */
+.conv { position: fixed; top: 54px; right: 16px; width: min(560px, 46vw); z-index: 70; background: var(--surface); border: 1px solid var(--line-2); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 10px 12px; box-shadow: 0 12px 30px rgba(0,0,0,.18); }
+.conv-lines { display: grid; gap: 4px; max-height: 40vh; overflow: auto; }
+.cv { font-size: 14px; }
+.cv-me { color: var(--muted); }
+.cv-ask { font-weight: 600; color: var(--warn); }
+.cv-error { color: var(--bad); }
+.cv-hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.conv-act { display: flex; justify-content: flex-end; gap: 4px; margin-top: 6px; }
+.voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+.vstage { grid-template-columns: auto 1fr; align-items: center; }
+.vstage .meter { grid-column: 1 / -1; }
+.mic-big { width: 72px; height: 72px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--surface-2); color: var(--ink); display: grid; place-items: center; cursor: pointer; }
+.mic-big .icon { width: 30px; height: 30px; }
+[data-mic="listening"] .mic-big { background: var(--bad); border-color: var(--bad); color: var(--bad-ink); }
+.vphase { font: 600 20px var(--display); }
+.meter { position: relative; height: 12px; border-radius: 6px; background: var(--line); overflow: hidden; --level: 0; }
+.meter span { position: absolute; inset: 0 auto 0 0; width: calc(var(--level) * 100%); background: var(--accent); transition: width .08s; }
+.meter i { position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1px dashed var(--ink); opacity: .4; }
+.meter.wide { height: 16px; margin: 6px 0; }
+.vlogp { grid-column: 1 / -1; }
+.vlog { list-style: none; display: grid; }
+.vlog li { display: grid; grid-template-columns: 50px 1fr; gap: 10px; padding: 7px 0; border-top: 1px solid var(--line); }
+.vlog .noact .vcmd { color: var(--muted); }
+.vt { font: 12px var(--mono); color: var(--muted); }
+.vheard { font-style: italic; }
+.vcmd { font-weight: 600; font-size: 13px; display: flex; gap: 5px; align-items: center; }
+.conf { font: 12px var(--mono); color: var(--muted); font-style: normal; }
+.conf.low { color: var(--bad); font-weight: 700; }
+.phrases { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; max-height: 360px; overflow: auto; }
+.phrases h4 { font-size: 12.5px; }
+.phrases p { font-size: 12.5px; color: var(--muted); }

@@ -1,0 +1,41 @@
+/* notes-panel.css: the collapsible notes panel on the right (UI_GUIDE.md §5.11). Optional.
+   Collapsed: a small tab. Open: 300px wide and the page makes room (margin-right). */
+.notes-panel { position: fixed; right: 0; top: 56px; bottom: 0; z-index: 50; display: flex; flex-direction: column; pointer-events: none; }
+.notes-panel > * { pointer-events: auto; }
+.notes-panel .nt-tab { margin-top: 8px; border-radius: var(--radius) 0 0 var(--radius); border-right: 0; gap: 6px; box-shadow: 0 1px 4px rgb(0 0 0 / .12); }
+.nt-count { display: inline-block; min-width: 18px; padding: 0 5px; border-radius: 9px; background: var(--surface-2); color: var(--ink); font-size: 12px; text-align: center; }
+.nt-over { display: inline-block; padding: 0 6px; border-radius: 9px; background: var(--warn-soft); color: var(--warn); font-size: 12px; margin-left: 4px; }
+body.notes-open .notes-panel { width: 300px; background: var(--surface); border-left: 1px solid var(--line); overflow-y: auto; padding: 10px 12px 16px; pointer-events: auto; }
+body.notes-open .layout-root, body.notes-open .banners { margin-right: 300px; }
+.nt-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.nt-title { font-size: 15px; display: flex; align-items: center; gap: 6px; }
+.note-add { display: grid; gap: 4px; padding-bottom: 10px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+.note-add textarea { resize: vertical; min-height: 44px; }
+.note-counter { font-size: 11px; color: var(--muted); text-align: right; margin-top: -2px; }
+.note-counter.near { color: var(--warn); font-weight: 600; }
+.swatches { display: flex; gap: 6px; border: 0; padding: 0; margin: 2px 0 4px; }
+.swatch { width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--line-2); cursor: pointer; position: relative; }
+.swatch input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.swatch:has(input:checked) { outline: 2px solid var(--focus); outline-offset: 1px; }
+.swatch:has(input:focus-visible) { outline: 2px solid var(--focus); }
+.note-sec { margin-top: 8px; }
+.note-h { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-bottom: 4px; }
+.note-h small { font-weight: 400; }
+.note-sec ul { list-style: none; display: grid; gap: 6px; }
+.note { position: relative; padding: 6px 30px 6px 8px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--note-bg, var(--surface-2)); }
+.note-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.note-meta { display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); }
+.note-meta:empty { display: none; }
+.note-when { display: inline-flex; align-items: center; gap: 3px; }
+.note-when .icon { width: 12px; height: 12px; }
+.note-del { position: absolute; top: 2px; right: 2px; }
+.note.is-past { opacity: .62; background: var(--surface-2); border-style: dashed; }
+.note.is-past .note-text { text-decoration: line-through; text-decoration-color: var(--line-2); }
+.note-past { text-transform: uppercase; font-size: 10px; letter-spacing: .05em; padding: 0 5px; border-radius: 3px; background: var(--line); color: var(--ink); }
+.c-sand  { --note-bg: color-mix(in srgb, #c9a96e 22%, var(--surface)); }
+.c-sage  { --note-bg: color-mix(in srgb, #8fae8b 24%, var(--surface)); }
+.c-sky   { --note-bg: color-mix(in srgb, #7fa6c4 24%, var(--surface)); }
+.c-lilac { --note-bg: color-mix(in srgb, #a796c4 24%, var(--surface)); }
+.c-rose  { --note-bg: color-mix(in srgb, #c49393 24%, var(--surface)); }
+.c-slate { --note-bg: color-mix(in srgb, #8c96a0 24%, var(--surface)); }
+.swatch.c-sand, .swatch.c-sage, .swatch.c-sky, .swatch.c-lilac, .swatch.c-rose, .swatch.c-slate { background: var(--note-bg); }

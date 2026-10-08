@@ -1,0 +1,9 @@
+/* banners.css: non-blocking banners (UI_GUIDE.md §5.8). */
+.banners { display: grid; gap: 6px; padding: 8px 16px 0; }
+.banners:empty { display: none; }
+.banner { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 8px 12px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface-2); font-size: 13.5px; }
+.banner > span { flex: 1; min-width: 240px; }
+.banner.bad { background: var(--bad-soft); border-color: var(--bad); }
+.banner.warn { background: var(--warn-soft); border-color: color-mix(in srgb, var(--warn) 45%, transparent); }
+.banner.info { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+.banner.note-banner { background: color-mix(in srgb, #a796c4 16%, var(--surface)); border-color: color-mix(in srgb, #a796c4 50%, var(--line)); }

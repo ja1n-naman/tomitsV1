@@ -668,3 +668,53 @@ Restart tomits first: close the old tomits window (it's still the 1.6.0 server) 
   - `test_no_voice_engine_is_reported_not_silent` now patches the Whisper recogniser instead of Vosk.
   - `test_vosk_result_to_heard` became `test_whisper_result_to_heard`.
   - Engine replaced, as requested.
+
+## UI guide and starter kit (documentation only; the app is not changed)
+
+- [x] Stage 1: front-end inventory (read only, 8 Oct 2026)
+- [x] Stage 2: design tokens extracted (in `UI_GUIDE.md` section 3)
+- [x] Stage 3: `UI_GUIDE.md` written
+- [x] Stage 4: `ui-kit/` built
+- [x] Stage 5: verified; screenshots in `ui-guide-images/`
+
+### Front-end inventory: which file defines what (`tomits/web/static/`)
+
+- `index.html`: the page shell, the same for all six layouts. It holds:
+  - the skip link and the app bar (brand, Layout button, quick-add form with the mic button, Search, the Saved indicator, theme button, help);
+  - the empty hosts: `#conv` (conversation panel), `#banners`, `#layout-root` (main), `#notes-panel` (aside), `#dlg` and `#alarm-dlg` (`<dialog>`), `#overlay`, `#toasts`;
+  - the attributes: `html[data-theme]`, `body[data-layout]` and `body[data-screen]`, plus `html[data-mic]` set at runtime.
+- `css/base.css`: the fallback tokens on `:root` and every shared component's look. That covers buttons, the app bar, quick add, the mic button and level bars, the Saved indicator, the conversation panel, banners, inline errors, toasts, panels, empty states, badges, the task row, proposals, period pages, history, voice, settings, the layout chooser, dialogs, the alarm dialog, setup steps, overlays, the notes panel and note colours.
+- `layouts/l1.css` to `l6.css`: one file per layout. Each one:
+  - redefines the tokens for light (`:root`) and dark (`[data-theme="dark"]`);
+  - styles that layout's frame, and overrides a few shared components (radius, button shape, app bar).
+  - Only one of these files is loaded at a time (`<link id="layout-css">`, swapped by JS).
+- `layouts/l1.js` to `l6.js`: each one registers `T.layouts[n]`, which provides:
+  - `frame(state, screen, inner)`, which builds the page frame and its navigation;
+  - `today()`, its own home screen;
+  - optionally `screens`, `extraScreens`, `defaultScreen` and `after(root)`. `after` is used for wiring: layout 3's drag and drop and layout 6's scroll to the end.
+- `js/boot-theme.js`: runs before paint. It reads `localStorage` `tomits-theme` / `tomits-layout`, then sets `data-theme` and the layout stylesheet.
+- `js/icons.js`: one inline SVG sprite (24px grid, stroke 1.75, round caps). `T.icon(name)` returns `<svg><use>`, and `T.hydrateIcons()` swaps `<i data-icon>` placeholders.
+- `js/api.js`:
+  - the event bus (`T.on` / `T.emit`) and the per-tab view state (`sessionStorage` `tomits-view`);
+  - the Saved indicator states and the online/offline flag;
+  - `T.api.command()`, `T.refresh()` (state reload) and `T.connect()` (EventSource server push).
+- `js/render.js`: the shared HTML builders every layout composes, including:
+  - buttons, nav links and empty states;
+  - task badges, the task row and task actions, and the day bar and stats;
+  - the proposal card, check-in banners, period pages, history, voice, settings, focus placeholder and layout chooser pages.
+- `js/forms.js`: `T.dlg` (one shared `<dialog>`) and every form: add / edit / move / reason / done / extend / link / goal / log progress, the confirmation read-back and the am/pm choice. It also has `T.formArgs` and `T.formError`.
+- `js/actions.js`:
+  - the action table (`T.ACTIONS`): every `data-act` and `data-form` names an entry or a registry command;
+  - `T.run()`, inline errors, toasts with Undo, click / change / submit wiring and autosave of text areas;
+  - the keyboard shortcut list (`T.SHORTCUTS`) and the key handler.
+- `js/notes.js`: the collapsible right-hand notes panel ("Remember"), its sections, the colour swatches, the counter, and its banners.
+- `js/voice.js`: the conversation panel, mic phases (`data-mic`, `data-mic-phase`), level meter (`--level`), recording, mic test, spoken replies, the alarm tone (Web Audio) and desktop notifications.
+- `js/app.js`: boot, the screen router (URL hash), theme / layout application, render with kept input, all banners, the alarm dialog, the help and search overlays, and the first-run setup steps.
+- Layout names and descriptions come from the server (`tomits/settings.py` `LAYOUTS`). The theme and layout choice is saved as a server setting (`ui_theme`, `ui_layout`) and mirrored to `localStorage` for the no-flash boot.
+
+### Added by this step (nothing else changed)
+
+- `UI_GUIDE.md`
+- `ui-kit/`
+- `ui-guide-images/`
+- this section of TASKS.md

@@ -1,0 +1,14 @@
+/* quick-add.css: the command box in the top bar, its mic button and level bars (UI_GUIDE.md §5.4). */
+.quickadd { flex: 1; display: flex; align-items: center; gap: 4px; max-width: 640px; margin-left: auto; border: 1px solid var(--line-2); border-radius: var(--radius); padding: 2px 4px 2px 10px; background: var(--surface); }
+.quickadd:focus-within { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.quickadd input { flex: 1; border: 0; padding: 6px 0; background: transparent; min-width: 0; }
+.quickadd input:focus { outline: none; }
+.qa-send { border: 0; background: transparent; color: var(--muted); padding: 6px; cursor: pointer; border-radius: var(--radius); }
+.qa-kbd { margin-right: 4px; }
+.mic-btn { display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); border-radius: 16px; padding: 4px 9px; cursor: pointer; }
+[data-mic="listening"] .mic-btn { background: var(--bad); border-color: var(--bad); color: var(--bad-ink); }
+[data-mic="thinking"] .mic-btn { border-color: var(--accent); color: var(--accent); }
+[data-mic="asking"] .mic-btn { border-color: var(--warn); color: var(--warn); }
+.lvl { display: inline-flex; gap: 2px; align-items: end; height: 14px; --level: 0; }
+.lvl span { width: 3px; height: calc(2px + var(--level) * 12px); background: currentColor; border-radius: 1px; transition: height .08s; }
+.lvl span:nth-child(2) { height: calc(2px + var(--level) * 8px); }

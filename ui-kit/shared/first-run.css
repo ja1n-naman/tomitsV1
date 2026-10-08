@@ -1,0 +1,6 @@
+/* first-run.css: the first-run setup dialog (UI_GUIDE.md §5.13). */
+.setup { width: min(640px, 94vw); }
+.steps { list-style: none; display: flex; gap: 8px; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); margin: 4px 0 12px; }
+.steps li.on { color: var(--accent); font-weight: 700; } .steps li.done { color: var(--ok); }
+.setup p { margin-bottom: 6px; }
+.setup-skip { text-align: right; margin-top: 8px; }

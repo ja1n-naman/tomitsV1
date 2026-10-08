@@ -1,0 +1,7 @@
+/* toast.css: the undo toast stack (UI_GUIDE.md §5.7). */
+.toasts { position: fixed; left: 50%; transform: translateX(-50%); bottom: 18px; display: grid; gap: 6px; z-index: 95; }
+.toast { display: flex; gap: 12px; align-items: center; background: var(--ink); color: var(--bg); padding: 8px 10px 8px 14px; border-radius: var(--radius); font-size: 13.5px; max-width: 640px; transition: opacity .4s; }
+.toast .btn { background: transparent; color: inherit; border-color: color-mix(in srgb, var(--bg) 50%, transparent); }
+.toast .btn .kbd { color: inherit; background: transparent; }
+.toast-err { background: var(--bad); color: var(--bad-ink); }
+.toast.out { opacity: 0; }

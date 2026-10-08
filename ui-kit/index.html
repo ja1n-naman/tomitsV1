@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- The layout chooser (UI_GUIDE.md §5.2). Open this file by double-clicking it.
+     It borrows the remembered layout's tokens (boot.js sets data-layout). -->
+<html lang="en" data-page="chooser">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Choose a layout · UI kit</title>
+<link rel="icon" href="data:,">
+<script src="shared/boot.js"></script>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="shared/topbar.css">
+<style>
+  .chooser { max-width: 980px; margin: 0 auto; padding: 28px 28px 60px; }
+  .about { margin-top: 22px; }
+  .about code { font: 12.5px var(--mono); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="appbar" data-slot="topbar">
+  <span class="appbar-brand"><span class="brand-mark" aria-hidden="true"></span><span data-app-name>App</span></span>
+  <span style="margin-left:auto"></span>
+  <button type="button" class="ab-btn" data-act="toggle_theme" aria-label="Switch theme" title="Switch theme"><i data-icon="moon" class="i-moon"></i><i data-icon="sun" class="i-sun"></i></button>
+</header>
+<main id="main" class="chooser" tabindex="-1">
+  <h1 class="screen-title">Choose a layout</h1>
+  <p class="lead-line">All six show every screen and every action; they differ in arrangement and look. Your choice is remembered.</p>
+  <ol class="layout-list" id="layout-list"></ol>
+  <section class="panel about">
+    <h2 class="panel-h">About this kit</h2>
+    <p class="small">Plain HTML, CSS and JavaScript: no build step, no installs, no network requests. All sample content is placeholder text from <code>demo-content.js</code>. The design rules are in <code>../UI_GUIDE.md</code>; how to reuse the kit is in <code>README.md</code>.</p>
+    <p class="small muted">Theme and layout are remembered in this browser (<code>localStorage</code>: <code>uikit.theme</code>, <code>uikit.layout</code>).</p>
+  </section>
+</main>
+<script src="demo-content.js"></script>
+<script src="shared/icons.js"></script>
+<script src="shared/core.js"></script>
+<script src="shared/theme-switch.js"></script>
+<script>
+/* The six layouts. Descriptions are generic UI copy (UI_GUIDE.md §5.2). */
+(function () {
+  var LAYOUTS = [
+    [1, "Timeline", "A left sidebar and a vertical timeline; each block shows why it is there."],
+    [2, "Calendar grid", "A grid of days with the chosen day widened, an unscheduled row and a side panel."],
+    [3, "Board", "Cards in status columns; other screens open as a drawer over the board."],
+    [4, "Focus on now", "One calm screen with the current item large; everything else in a dock."],
+    [5, "Split dashboard", "Dense panes side by side: list, progress, decisions, voice and history at once."],
+    [6, "Voice first", "A conversation with a big mic; answers come back as cards you can act on."]
+  ];
+  var cur = String(UI.store.get("uikit.layout", "1")), screen = location.hash.slice(1);
+  document.getElementById("layout-list").innerHTML = LAYOUTS.map(function (l) {
+    var on = String(l[0]) === cur;
+    return '<li class="' + (on ? "is-current" : "") + '"><a class="layout-pick" href="layout-' + l[0] + "/index.html" + (screen ? "#" + UI.esc(screen) : "") + '" data-pick="' + l[0] + '"' + (on ? ' aria-current="true"' : "") + ">" +
+      '<span class="lp-n">' + l[0] + '</span><span class="lp-body"><b>' + l[1] + "</b><span>" + l[2] + "</span></span>" + (on ? '<span class="lp-cur">' + UI.icon("check") + "In use</span>" : "") + "</a></li>";
+  }).join("");
+  document.addEventListener("click", function (e) { var a = e.target.closest("[data-pick]"); if (a) UI.store.set("uikit.layout", a.getAttribute("data-pick")); });
+  document.querySelectorAll("[data-app-name]").forEach(function (el) { el.textContent = UI.data.appName || "App"; });
+  UI.hydrateIcons();
+})();
+</script>
+</body>
+</html>

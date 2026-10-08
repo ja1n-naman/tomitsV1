@@ -107,3 +107,5 @@ rephrased commands but can only pick existing commands. What it heard and how it
 acts; unclear or low-confidence speech does nothing. Every attempt is logged (`o` -> `l`). Replies use the Windows
 voices and can be turned off ("turn off spoken replies"). Hands-free mode with a wake phrase is off by default
 ("turn on hands free"). If there's no mic, `v` lets you type the same command in words.
+
+<!-- run cmd /c "c:\codes\projects\tomits\start-tomits.bat"   -->`

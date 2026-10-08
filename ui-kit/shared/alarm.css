@@ -1,0 +1,9 @@
+/* alarm.css: the alarm popup (UI_GUIDE.md §5.12). Optional. */
+.alarm-dlg { border-top: 5px solid var(--bad); width: min(460px, 92vw); }
+.alarm-top { display: flex; align-items: center; gap: 10px; }
+.alarm-bell { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: var(--bad); color: var(--bad-ink); animation: ring 1s ease-in-out infinite; }
+.alarm-bell .icon { width: 20px; height: 20px; }
+.alarm-dlg h2 { font: 600 24px var(--display); margin: 8px 0 4px; }
+.alarm-msg { font-size: 15px; }
+@keyframes ring { 0%, 50%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(-12deg); } 20%, 40% { transform: rotate(12deg); } }
+@media (prefers-reduced-motion: reduce) { .alarm-bell { animation: none; } }

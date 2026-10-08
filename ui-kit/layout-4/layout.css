@@ -1,0 +1,54 @@
+/* Layout 4: Focus on now (UI_GUIDE.md §4.4). Quiet and roomy.
+   One centred stage (max 880px) with the current item in a 64px serif; a
+   floating pill dock at the bottom; other screens open as full sheets (max 980px). */
+body { font-size: 15.5px; }
+.appbar { background: transparent; border-bottom: 0; padding: 14px 40px; }
+.appbar-brand { font: italic 20px var(--serif); }
+.brand-mark { display: none; }
+.btn { border-radius: 999px; padding: 6px 14px; }
+.btn.big { padding: 11px 22px; font-size: 15.5px; }
+.btn.tiny { padding: 1px 9px; }
+.quickadd { border-radius: 999px; }
+.l4 { min-height: calc(100vh - 70px); }
+.quiet-top { max-width: 880px; margin: 0 auto; padding: 0 40px; color: var(--muted); font-size: 14px; }
+.stage { max-width: 880px; margin: 0 auto; padding: 7vh 40px 180px; }
+.now-k { display: flex; align-items: center; gap: 10px; color: var(--muted); }
+.dot-live { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.now-title { font: 400 64px/1.06 var(--serif) !important; letter-spacing: -.02em; margin: 14px 0 20px; }
+.now-title.soft { color: var(--muted); }
+.now-line { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; max-width: 560px; }
+.now-line span { display: block; height: 100%; background: var(--accent); }
+.now-why { color: var(--muted); margin: 14px 0 26px; max-width: 640px; }
+.now-act { display: flex; gap: 10px; flex-wrap: wrap; }
+.next { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); }
+.next-k { font: 500 13px var(--font); text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
+.next-title { font: 30px/1.2 var(--serif); margin: 6px 0 4px; }
+.t { font: 500 15px var(--font); color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 14px; display: inline-block; min-width: 48px; }
+.next-title .t { font-size: 20px; }
+.next-why { color: var(--muted); font-size: 14.5px; }
+.then { list-style: none; display: grid; gap: 6px; margin-top: 16px; color: var(--muted); }
+.extras { margin-top: 22px; font-size: 14.5px; color: var(--muted); }
+.dock { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; gap: 2px; padding: 6px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); z-index: 60; }
+.dock a { display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 999px; color: var(--muted); text-decoration: none; font-size: 14px; white-space: nowrap; }
+.dock a:hover { color: var(--ink); background: var(--bg); }
+.dock a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); }
+.dock .badge { font-size: 11px; background: var(--bad); color: var(--bad-ink); border-radius: 8px; padding: 0 5px; }
+.dock .badge:empty { display: none; }
+.dock em { font-style: normal; font-size: 11px; border: 1px dashed currentColor; border-radius: 6px; padding: 0 4px; }
+.sheet { background: var(--surface); min-height: calc(100vh - 70px); animation: rise .2s ease-out; }
+@keyframes rise { from { transform: translateY(20px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .sheet { animation: none; } }
+.sheet-in { max-width: 980px; margin: 0 auto; padding: 20px 40px 150px; display: grid; gap: 14px; align-content: start; }
+.back { display: inline-flex; gap: 4px; align-items: center; text-decoration: none; font-size: 14.5px; }
+.sheet .screen-title { font: 400 40px/1.1 var(--serif); }
+.sheet .lead-line { font-size: 16.5px; }
+.sheet .sec-h { font: 500 13px var(--font); text-transform: uppercase; letter-spacing: .13em; color: var(--muted); margin: 20px 0 6px; }
+/* flat agenda rows on sheets */
+.sheet .items { gap: 8px; }
+.sheet .items .item { border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 12px 0; background: transparent; }
+.sheet .items .item-title { font: 21px var(--serif); }
+.sheet .items .item.is-now { box-shadow: none; background: linear-gradient(90deg, var(--accent-soft), transparent 70%); padding-left: 12px; }
+.prog h3 { font: 22px var(--serif); }
+.panel, .prog, .empty, .decision { border-radius: var(--radius); }
+.banners { max-width: 980px; margin: 0 auto; }
+.toasts { bottom: 86px; }
