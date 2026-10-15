@@ -12,6 +12,7 @@ Security for a local app:
 
 from __future__ import annotations
 
+import os
 import json
 import queue
 from pathlib import Path
@@ -36,17 +37,22 @@ def create_app(ctx, port: int) -> Flask:
     app = Flask(__name__, static_folder=None)
     app.config["JSON_SORT_KEYS"] = False
     hosts = {f"127.0.0.1:{port}", f"localhost:{port}"}
-    origins = {f"http://{h}" for h in hosts}
+    # origins = {f"http://{h}" for h in hosts} change made for cca2
+    allow_any = os.environ.get("TOMITS_ALLOWED_HOSTS") == "*"
 
     def deny(why: str):
         return jsonify({"ok": False, "error": why}), 403
 
     @app.before_request
     def guard():
-        if request.host not in hosts:
+        # if request.host not in hosts:
+        #     return deny("This address isn't the local tomits app.")
+        # origin = request.headers.get("Origin")
+        # if origin and origin not in origins: change made for cca2
+        if not allow_any and request.host not in hosts:
             return deny("This address isn't the local tomits app.")
         origin = request.headers.get("Origin")
-        if origin and origin not in origins:
+        if origin and origin not in origins and not (allow_any and origin == f"{request.scheme}://{request.host}"):
             return deny("Requests from other websites are not allowed.")
         if request.headers.get("Sec-Fetch-Site") == "cross-site":
             return deny("Requests from other websites are not allowed.")

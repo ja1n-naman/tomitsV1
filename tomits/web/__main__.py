@@ -5,6 +5,7 @@ Picks port 3000, or the next free one, binds 127.0.0.1 only, opens the browser.
 
 from __future__ import annotations
 
+import os
 import argparse
 import socket
 import sys
@@ -31,8 +32,8 @@ def find_port(start: int = DEFAULT_PORT, tries: int = 100) -> int:
     raise RuntimeError(f"No free port between {start} and {start + tries - 1}.")
 
 
-HOST = "127.0.0.1"  # never a network address: nobody else on the network can open tomits
-
+# HOST = "127.0.0.1"  # never a network address: nobody else on the network can open tomits change made for cca2
+HOST = os.environ.get("TOMITS_HOST", "127.0.0.1")  # localhost unless the container sets TOMITS_HOST
 
 def build_server(ctx, port: int):
     from werkzeug.serving import WSGIRequestHandler, make_server
