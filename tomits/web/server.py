@@ -37,7 +37,7 @@ def create_app(ctx, port: int) -> Flask:
     app = Flask(__name__, static_folder=None)
     app.config["JSON_SORT_KEYS"] = False
     hosts = {f"127.0.0.1:{port}", f"localhost:{port}"}
-    # origins = {f"http://{h}" for h in hosts} change made for cca2
+    origins = {f"http://{h}" for h in hosts} #change made for cca2
     allow_any = os.environ.get("TOMITS_ALLOWED_HOSTS") == "*"
 
     def deny(why: str):

@@ -32,7 +32,7 @@ def find_port(start: int = DEFAULT_PORT, tries: int = 100) -> int:
     raise RuntimeError(f"No free port between {start} and {start + tries - 1}.")
 
 
-HOST = "127.0.0.1"  # never a network address: nobody else on the network can open tomits change made for cca2
+# HOST = "127.0.0.1"  # never a network address: nobody else on the network can open tomits change made for cca2
 HOST = os.environ.get("TOMITS_HOST", "127.0.0.1")  # localhost unless the container sets TOMITS_HOST
 
 def build_server(ctx, port: int):
