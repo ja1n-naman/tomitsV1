@@ -1,0 +1,14 @@
+.git
+.venv
+.pytest_cache
+__pycache__
+data
+_to_delete
+ui-guide-images
+ui-kit
+*.pdf
+*.docx
+*.bat
+voice_audio
+whisper-models
+voice-model

@@ -31,3 +31,6 @@ ideation.docx
 changes.md
 test.md
 tests/audio/
+
+# course handout, not part of the project
+*.pdf

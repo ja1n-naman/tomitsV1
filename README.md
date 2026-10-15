@@ -109,3 +109,17 @@ voices and can be turned off ("turn off spoken replies"). Hands-free mode with a
 ("turn on hands free"). If there's no mic, `v` lets you type the same command in words.
 
 <!-- run cmd /c "c:\codes\projects\tomits\start-tomits.bat"   -->`
+## CI/CD (Jenkins, Docker, Minikube)
+
+Course project for CCA 2. Pipeline in `Jenkinsfile`; stages: **Checkout** (pull from GitHub), **Build and Test**
+(byte-compile + pytest, voice tests skipped as they need audio packages), **Docker Build** (`Dockerfile`),
+**Push Image** (Docker Hub, tagged with the build number and `latest`, credentials id `dockerhub` stored in Jenkins),
+**Deploy to Minikube** (`k8s/deployment.yaml`, `k8s/service.yaml`), **Verify** (pods/deployment/service listed, app fetched).
+
+Setup on AWS: EC2 Ubuntu (t3.medium, ports 22 and 8080 open) with Jenkins, Docker, Minikube and kubectl installed;
+add the `jenkins` user to the `docker` group; add the Docker Hub credentials in Jenkins; create a Pipeline job
+("Pipeline script from SCM") pointing at this repository. Open the app with `minikube service tomits --url`.
+
+Second run: change something in the code (e.g. a label in `tomits/web/static`), push, and build again; the new
+build-number tag is rolled out. In the container, tomits listens on `0.0.0.0` (`TOMITS_HOST`) and accepts any Host
+header (`TOMITS_ALLOWED_HOSTS`); both are off by default, so a normal local run stays localhost-only.

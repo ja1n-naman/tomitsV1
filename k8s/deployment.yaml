@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomits
+  labels:
+    app: tomits
+spec:
+  replicas: 1            # SQLite database: keep a single pod
+  selector:
+    matchLabels:
+      app: tomits
+  template:
+    metadata:
+      labels:
+        app: tomits
+    spec:
+      containers:
+        - name: tomits
+          image: DOCKER_USER/tomits:latest   # Jenkins replaces this with the pushed tag
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: TOMITS_ALLOWED_HOSTS     # the Minikube IP is not known in advance
+              value: "*"
+          readinessProbe:
+            tcpSocket: {port: 3000}
+            initialDelaySeconds: 5
+          livenessProbe:
+            tcpSocket: {port: 3000}
+            initialDelaySeconds: 15
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          emptyDir: {}   # demo only: data is lost when the pod restarts

@@ -718,3 +718,8 @@ Restart tomits first: close the old tomits window (it's still the 1.6.0 server) 
 - `ui-kit/`
 - `ui-guide-images/`
 - this section of TASKS.md
+
+## CCA 2 (CI/CD deployment)
+- [x] Dockerfile, .dockerignore, k8s/ Deployment + Service, Jenkinsfile, README section
+- [ ] Allow TOMITS_HOST / TOMITS_ALLOWED_HOSTS (opt-in) in tomits/web so the container works (needs user approval)
+- [ ] Set up Jenkins on AWS, Docker Hub credentials, run pipeline, take screenshots, do second run
