@@ -44,7 +44,7 @@
     var main = all ? (d.tasks.length ? timeline(st) : R.empty("No timed tasks on this day yet. Plan my day places the tasks below into the free time; or give one a time yourself.",
       R.btn("plan_day", { date: d.date }, "Plan my day", { icon: "auto", cls: "primary", disabled: d.is_past })))
       : R.empty("Nothing planned for " + R.esc(d.short) + " yet. Add the things you want to do; tasks with a time stay put, and Plan my day places the rest.",
-        R.btn("add_task", { date: d.date }, "Add your first task (v2)", { icon: "plus", cls: "primary", kbd: "A" }));
+        R.btn("add_task", { date: d.date }, "Add your first task (v3)", { icon: "plus", cls: "primary", kbd: "A" }));
     var aside = '<aside class="l1-aside">' +
       (sel ? '<section class="panel"><h3 class="panel-h">' + I("focus") + "Selected</h3>" + R.taskRow(sel, { keys: true }) + "</section>" : "") +
       '<section class="panel"><h3 class="panel-h">' + I("inbox") + "No time / didn’t fit</h3>" + R.untimedList(st) + "</section>" +
