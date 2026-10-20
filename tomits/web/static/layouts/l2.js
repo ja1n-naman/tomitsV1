@@ -75,7 +75,7 @@
   function today(st) {
     var any = st.week.days.some(function (d) { return d.tasks.length || d.untimed.length; });
     var main = any ? grid(st, st.week.days) : R.empty("Nothing planned this week yet. Add a task; give it a time to fix it in place, or let Plan my day place it in your day window.",
-      R.btn("add_task", { date: st.day.date }, "Add your first task (v3)", { icon: "plus", cls: "primary", kbd: "A" }));
+      R.btn("add_task", { date: st.day.date }, "Add your first task (v0)", { icon: "plus", cls: "primary", kbd: "A" }));
     return '<div class="l2-cal"><div class="l2-calwrap"><div class="cal-bar"><h2 class="screen-title">Week of ' + R.esc(R.dayLabel(st.week.start, "plain")) + ' <span class="muted">· ' + R.esc(st.day.label) + "</span></h2>" +
       '<div class="legend"><span class="kind k-fixed">' + I("anchor") + 'Fixed</span><span class="kind k-pinned">' + I("pin") + 'Pinned</span><span class="kind k-auto">' + I("auto") + "Auto-placed</span></div></div>" +
       '<div class="l2-daybar">' + R.dayBar(st, { compact: true }) + "</div>" + main + "</div>" + side(st) + "</div>";
